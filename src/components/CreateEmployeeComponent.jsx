@@ -1,243 +1,223 @@
-import React, { Component } from 'react';
-import ProjectService from '../services/ProjectService';
+import React, { Component } from 'react'
+import EmployeeService from '../services/EmployeeService';
 
-class CreateProjectComponent extends Component {
+class CreateEmployeeComponent extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
-            projectName: '',
+            // step 2
+            id: this.props.match.params.id,
+            firstName: '',
+            lastName: '',
+            emailId: '',
+            employeeType: '',
+            employmentStatus: '',
+            visa: '',
+            dob: '',
             vendor: '',
-            client: '',
-            billRate: '',
-            startDate: '',
-            endDate: '',
-            status: '',
-            invoiceTerm: '',
-            paymentTerm: '',
-            notes: '',
+            phone: '',
+            address: '',
+            city: '',
+            state: '',
+            reffredby: '',
         };
+        this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
+        this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
+        this.saveOrUpdateEmployee = this.saveOrUpdateEmployee.bind(this);
+        this.changeEmailHandler = this.changeEmailHandler.bind(this);
+        this.changeEmployeeTypeHandler = this.changeEmployeeTypeHandler.bind(this);
+        this.changeEmploymentStatusHandler = this.changeEmploymentStatusHandler.bind(this);
+        this.changeVisaHandler = this.changeVisaHandler.bind(this);
+        this.changeDOBTypeHandler = this.changeDOBTypeHandler.bind(this);
+        this.changeVendorTypeHandler = this.changeVendorTypeHandler.bind(this);
+        this.changePhoneTypeHandler = this.changePhoneTypeHandler.bind(this);
 
-        this.changeProjectNameHandler = this.changeProjectNameHandler.bind(this);
-        this.changeVendorHandler = this.changeVendorHandler.bind(this);
-        this.changeClientHandler = this.changeClientHandler.bind(this);
-        this.changeBillRateHandler = this.changeBillRateHandler.bind(this);
-        this.changeStartDateHandler = this.changeStartDateHandler.bind(this);
-        this.changeEndDateHandler = this.changeEndDateHandler.bind(this);
-        this.changeStatusHandler = this.changeStatusHandler.bind(this);
-        this.changeInvoiceTermHandler = this.changeInvoiceTermHandler.bind(this);
-        this.changePaymentTermHandler = this.changePaymentTermHandler.bind(this);
-        this.changeNotesHandler = this.changeNotesHandler.bind(this);
-        this.saveOrUpdateProject = this.saveOrUpdateProject.bind(this);
+        this.changeAddressHandler = this.changeAddressHandler.bind(this);
+        this.changeCityHandler = this.changeCityHandler.bind(this);
+        this.changeStateHandler = this.changeStateHandler.bind(this);
+        this.changeReffredByHandler = this.changeReffredByHandler.bind(this);
+
     }
 
-    saveOrUpdateProject(e) {
-        e.preventDefault();
-        const project = {
-            projectName: this.state.projectName,
-            vendor: this.state.vendor,
-            client: this.state.client,
-            billRate: this.state.billRate,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
-            status: this.state.status,
-            invoiceTerm: this.state.invoiceTerm,
-            paymentTerm: this.state.paymentTerm,
-            notes: this.state.notes,
-        };
+    // step 3
+    componentDidMount() {
 
+        // step 4
         if (this.state.id === '_add') {
-            ProjectService.createProject(project)
-                .then(() => {
-                    this.props.history.push('/projects');
-                })
-                .catch(error => {
-                    console.error('Error creating project:', error);
-                });
+            return
         } else {
-            ProjectService.updateProject(project, this.state.id)
-                .then(() => {
-                    this.props.history.push('/projects');
-                })
-                .catch(error => {
-                    console.error('Error updating project:', error);
+            EmployeeService.getEmployeeById(this.state.id).then((res) => {
+                let employee = res.data;
+                this.setState({
+                    firstName: employee.firstName,
+                    lastName: employee.lastName,
+                    emailId: employee.emailId
                 });
+            });
+        }
+    }
+    saveOrUpdateEmployee = (e) => {
+        e.preventDefault();
+        let employee = { firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId };
+        console.log('employee => ' + JSON.stringify(employee));
+
+        // step 5
+        if (this.state.id === '_add') {
+            EmployeeService.createEmployee(employee).then(res => {
+                this.props.history.push('/employees');
+            });
+        } else {
+            EmployeeService.updateEmployee(employee, this.state.id).then(res => {
+                this.props.history.push('/employees');
+            });
         }
     }
 
-    changeProjectNameHandler(event) {
-        this.setState({ projectName: event.target.value });
+    changeFirstNameHandler = (event) => {
+        this.setState({ firstName: event.target.value });
     }
 
-    changeVendorHandler(event) {
+    changeLastNameHandler = (event) => {
+        this.setState({ lastName: event.target.value });
+    }
+
+    changeEmailHandler = (event) => {
+        this.setState({ emailId: event.target.value });
+    }
+    changeEmployeeTypeHandler = (event) => {
+        this.setState({ employeeType: event.target.value });
+    }
+
+    changeEmploymentStatusHandler = (event) => {
+        this.setState({ employmentStatus: event.target.value });
+    }
+
+    changeVisaHandler = (event) => {
+        this.setState({ visa: event.target.value });
+    }
+    changeDOBTypeHandler = (event) => {
+        this.setState({ dob: event.target.value });
+    }
+    changeVendorTypeHandler = (event) => {
         this.setState({ vendor: event.target.value });
     }
-
-    changeClientHandler(event) {
-        this.setState({ client: event.target.value });
+    changePhoneTypeHandler = (event) => {
+        this.setState({ phone: event.target.value });
     }
-
-    changeBillRateHandler(event) {
-        this.setState({ billRate: event.target.value });
+    changeAddressHandler = (event) => {
+        this.setState({ address: event.target.value });
     }
-
-    changeStartDateHandler(event) {
-        this.setState({ startDate: event.target.value });
+    changeCityHandler = (event) => {
+        this.setState({ city: event.target.value });
     }
-
-    changeEndDateHandler(event) {
-        this.setState({ endDate: event.target.value });
+    changeStateHandler = (event) => {
+        this.setState({ state: event.target.value });
     }
-
-    changeStatusHandler(event) {
-        this.setState({ status: event.target.value });
-    }
-
-    changeInvoiceTermHandler(event) {
-        this.setState({ invoiceTerm: event.target.value });
-    }
-
-    changePaymentTermHandler(event) {
-        this.setState({ paymentTerm: event.target.value });
-    }
-
-    changeNotesHandler(event) {
-        this.setState({ notes: event.target.value });
+    changeReffredByHandler = (event) => {
+        this.setState({ reffredby: event.target.value });
     }
 
     cancel() {
-        this.props.history.push('/projects');
+        this.props.history.push('/employees');
     }
 
     getTitle() {
-        return this.state.id === '_add' ? <h3 className="text-center">Add Project</h3> : <h3 className="text-center">Update Project</h3>;
+        if (this.state.id === '_add') {
+            return <h3 className="text-center">Add Employee</h3>
+        } else {
+            return <h3 className="text-center">Update Employee</h3>
+        }
     }
-
     render() {
         return (
             <div>
-                <br />
+                <br></br>
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3 overflow-y:auto">
-                            {this.getTitle()}
+                            {
+                                this.getTitle()
+                            }
                             <div className="card-body">
                                 <form>
-                                    <div className="form-group">
-                                        <label>Project Name:</label>
-                                        <input
-                                            placeholder="Project Name"
-                                            name="projectName"
-                                            className="form-control"
-                                            value={this.state.projectName}
-                                            onChange={this.changeProjectNameHandler}
-                                        />
+                                    <div className="input-group" >
+                                        <label > First Name :  </label> <input placeholder="First Name" name="firstName" className="form-control"
+                                            value={this.state.firstName} onChange={this.changeFirstNameHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label>Vendor:</label>
-                                        <input
-                                            placeholder="Vendor"
-                                            name="vendor"
-                                            className="form-control"
-                                            value={this.state.vendor}
-                                            onChange={this.changeVendorHandler}
-                                        />
+                                        <label> Last Name: </label>
+                                        <input placeholder="Last Name" name="lastName" className="form-control"
+                                            value={this.state.lastName} onChange={this.changeLastNameHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label>Client:</label>
-                                        <input
-                                            placeholder="Client"
-                                            name="client"
-                                            className="form-control"
-                                            value={this.state.client}
-                                            onChange={this.changeClientHandler}
-                                        />
+                                        <label> Email Id: </label>
+                                        <input placeholder="Email Address" name="emailId" className="form-control"
+                                            value={this.state.emailId} onChange={this.changeEmailHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label>Bill Rate:</label>
-                                        <input
-                                            type="number"
-                                            step="0.01"
-                                            name="billRate"
-                                            className="form-control"
-                                            value={this.state.billRate}
-                                            onChange={this.changeBillRateHandler}
-                                        />
+                                        <label> Employee Type: </label>
+                                        <input placeholder="Employee Type" name="employeeType" className="form-control"
+                                            value={this.state.employeeType} onChange={this.changeEmployeeTypeHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label>Start Date:</label>
-                                        <input
-                                            type="date"
-                                            name="startDate"
-                                            className="form-control"
-                                            value={this.state.startDate}
-                                            onChange={this.changeStartDateHandler}
-                                        />
+                                        <label> Employee Status: </label>
+                                        <input placeholder="Employment Status" name="employmentStatus" className="form-control"
+                                            value={this.state.employmentStatus} onChange={this.changeEmploymentStatusHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label>End Date:</label>
-                                        <input
-                                            type="date"
-                                            name="endDate"
-                                            className="form-control"
-                                            value={this.state.endDate}
-                                            onChange={this.changeEndDateHandler}
-                                        />
+                                        <label> Visa Status: </label>
+                                        <input placeholder="Visa" name="visa" className="form-control"
+                                            value={this.state.visa} onChange={this.changeVisaHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label>Status:</label>
-                                        <input
-                                            placeholder="Status"
-                                            name="status"
-                                            className="form-control"
-                                            value={this.state.status}
-                                            onChange={this.changeStatusHandler}
-                                        />
+                                        <label> Vendor Name: </label>
+                                        <input placeholder="Vendor Name" name="vendor" className="form-control"
+                                            value={this.state.vendor} onChange={this.changeVendorTypeHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label>Invoice Term:</label>
-                                        <input
-                                            placeholder="Invoice Term"
-                                            name="invoiceTerm"
-                                            className="form-control"
-                                            value={this.state.invoiceTerm}
-                                            onChange={this.changeInvoiceTermHandler}
-                                        />
+                                        <label> Date Of Birth Status: </label>
+                                        <input placeholder="Employment Status" name="employmentStatus" className="form-control"
+                                            value={this.state.dob} onChange={this.changeDOBTypeHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label>Payment Term:</label>
-                                        <input
-                                            placeholder="Payment Term"
-                                            name="paymentTerm"
-                                            className="form-control"
-                                            value={this.state.paymentTerm}
-                                            onChange={this.changePaymentTermHandler}
-                                        />
+                                        <label> Phone Number : </label>
+                                        <input placeholder="xxx-xxx-xxxx" name="phone" className="form-control"
+                                            value={this.state.phone} onChange={this.changePhoneTypeHandler} />
                                     </div>
                                     <div className="form-group">
-                                        <label>Notes:</label>
-                                        <input
-                                            placeholder="Notes"
-                                            name="notes"
-                                            className="form-control"
-                                            value={this.state.notes}
-                                            onChange={this.changeNotesHandler}
-                                        />
+                                        <label> Address: </label>
+                                        <input placeholder="Address" name="address" className="form-control"
+                                            value={this.state.address} onChange={this.changeAddressHandler} />
                                     </div>
-                                    <button className="btn btn-success" onClick={this.saveOrUpdateProject}>
-                                        Save
-                                    </button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: '10px' }}>
-                                        Cancel
-                                    </button>
+                                    <div className="form-group">
+                                        <label> City: </label>
+                                        <input placeholder="City" name="city" className="form-control"
+                                            value={this.state.city} onChange={this.changeCityHandler} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label> State : </label>
+                                        <input placeholder="State" name="state" className="form-control"
+                                            value={this.state.state} onChange={this.changeStateHandler} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label> ReffredBy : </label>
+                                        <input placeholder="State" name="state" className="form-control"
+                                            value={this.state.reffredby} onChange={this.changeReffredByHandler} />
+                                    </div>
+
+
+                                    <button className="btn btn-success" onClick={this.saveOrUpdateEmployee}>Save</button>
+                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Cancel</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default CreateProjectComponent;
+export default CreateEmployeeComponent
