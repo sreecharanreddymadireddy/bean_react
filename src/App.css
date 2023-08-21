@@ -12,7 +12,10 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.card {
+    max-height: 500px; /* Adjust the height as needed */
+    overflow-y: auto;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
