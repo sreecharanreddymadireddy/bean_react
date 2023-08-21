@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/sreecharanreddymadireddy/bean_react.git/static/css/main.10d47076.chunk.css",
+    "main.css": "/sreecharanreddymadireddy/bean_react.git/static/css/main.f7606138.chunk.css",
     "main.js": "/sreecharanreddymadireddy/bean_react.git/static/js/main.6733a723.chunk.js",
     "main.js.map": "/sreecharanreddymadireddy/bean_react.git/static/js/main.6733a723.chunk.js.map",
     "runtime-main.js": "/sreecharanreddymadireddy/bean_react.git/static/js/runtime-main.3b8ec089.js",
     "runtime-main.js.map": "/sreecharanreddymadireddy/bean_react.git/static/js/runtime-main.3b8ec089.js.map",
-    "static/css/2.a58601c5.chunk.css": "/sreecharanreddymadireddy/bean_react.git/static/css/2.a58601c5.chunk.css",
+    "static/css/2.f22ed1fb.chunk.css": "/sreecharanreddymadireddy/bean_react.git/static/css/2.f22ed1fb.chunk.css",
     "static/js/2.d05f64e8.chunk.js": "/sreecharanreddymadireddy/bean_react.git/static/js/2.d05f64e8.chunk.js",
     "static/js/2.d05f64e8.chunk.js.map": "/sreecharanreddymadireddy/bean_react.git/static/js/2.d05f64e8.chunk.js.map",
     "index.html": "/sreecharanreddymadireddy/bean_react.git/index.html",
-    "precache-manifest.024fceddd98f49266f5e887890e9acd0.js": "/sreecharanreddymadireddy/bean_react.git/precache-manifest.024fceddd98f49266f5e887890e9acd0.js",
+    "precache-manifest.f1259d5cfe283f8e3c0a77313a2fc472.js": "/sreecharanreddymadireddy/bean_react.git/precache-manifest.f1259d5cfe283f8e3c0a77313a2fc472.js",
     "service-worker.js": "/sreecharanreddymadireddy/bean_react.git/service-worker.js",
-    "static/css/2.a58601c5.chunk.css.map": "/sreecharanreddymadireddy/bean_react.git/static/css/2.a58601c5.chunk.css.map",
-    "static/css/main.10d47076.chunk.css.map": "/sreecharanreddymadireddy/bean_react.git/static/css/main.10d47076.chunk.css.map",
+    "static/css/2.f22ed1fb.chunk.css.map": "/sreecharanreddymadireddy/bean_react.git/static/css/2.f22ed1fb.chunk.css.map",
+    "static/css/main.f7606138.chunk.css.map": "/sreecharanreddymadireddy/bean_react.git/static/css/main.f7606138.chunk.css.map",
     "static/js/2.d05f64e8.chunk.js.LICENSE.txt": "/sreecharanreddymadireddy/bean_react.git/static/js/2.d05f64e8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3b8ec089.js",
-    "static/css/2.a58601c5.chunk.css",
+    "static/css/2.f22ed1fb.chunk.css",
     "static/js/2.d05f64e8.chunk.js",
-    "static/css/main.10d47076.chunk.css",
+    "static/css/main.f7606138.chunk.css",
     "static/js/main.6733a723.chunk.js"
   ]
 }
