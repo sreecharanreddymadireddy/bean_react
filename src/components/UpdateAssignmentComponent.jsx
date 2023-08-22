@@ -59,6 +59,7 @@ class UpdateAssignmentComponent extends Component {
             this.props.history.push('/assignments');
         });
     };
+    
 
     changeAssignmentTypeHandler = (event) => {
         this.setState({ assignmentType: event.target.value });

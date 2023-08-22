@@ -34,18 +34,22 @@ class CreateAssignmentComponent extends Component {
 
 
   changeEmployeeIdHandler(event) {
-    this.setState({ employeeId: event.target.value });
-    const selectedEmployeeId = event.target.value;
-    const selectedEmployee = this.state.employeeOptions.find(project => project.id === selectedEmployeeId);
-    this.setState({ employee: selectedEmployee });
+    const selectedEmployeeId = parseInt(event.target.value);
+    this.setState({ employeeId: selectedEmployeeId }, () => {
+      const selectedEmployee = this.state.employeeOptions.find(employee => employee.employeeId === selectedEmployeeId);
+      this.setState({ employee: selectedEmployee }, () => {
+        console.log("employee data final", this.state.employee);
+      });
+    });
   }
-
-
   changeProjectIdHandler(event) {
-    this.setState({ projectId: event.target.value });
-    const selectedProjectId = event.target.value;
-    const selectedProject = this.state.projectOptions.find(project => project.id === selectedProjectId);
-    this.setState({ project: selectedProject });
+    const selectedProjectId = parseInt(event.target.value);
+    this.setState({ projectId: selectedProjectId }, () => {
+      const selectedProject = this.state.projectOptions.find(project => project.projectId === selectedProjectId);
+      this.setState({ project: selectedProject }, () => {
+        console.log("project data final", this.state.project);
+      });
+    });
   }
   componentDidMount() {
     this.fetchEmployeeData();
@@ -122,7 +126,9 @@ class CreateAssignmentComponent extends Component {
           console.error('Error creating assignment:', error);
         });
     } else {
+      console.log('final data 1' + JSON.stringify(assignment));
       AssignmentService.updateAssignment(assignment, this.state.assignmentId)
+
         .then(() => {
           this.props.history.push('/assignments');
         })
@@ -250,7 +256,7 @@ class CreateAssignmentComponent extends Component {
                     >
                       <option value="">Select Employee</option>
                       {this.state.employeeOptions.map(employee => (
-                        <option key={employee.id} value={employee.id}>
+                        <option key={employee.employeeId} value={employee.employeeId}>
                           {employee.firstName}
                         </option>
                       ))}
@@ -267,7 +273,7 @@ class CreateAssignmentComponent extends Component {
                     >
                       <option value="">Select Project</option>
                       {this.state.projectOptions.map(project => (
-                        <option key={project.id} value={project.id}>
+                        <option key={project.projectId} value={project.projectId}>
                           {project.projectName}
                         </option>
                       ))}

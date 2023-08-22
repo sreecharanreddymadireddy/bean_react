@@ -6,6 +6,7 @@ class CreateProjectComponent extends Component {
         super(props);
 
         this.state = {
+            id: this.props.match.params.id,
             projectName: '',
             vendor: '',
             client: '',
@@ -47,6 +48,7 @@ class CreateProjectComponent extends Component {
         };
 
         if (this.state.id === '_add') {
+            console.log('project data ' + project);
             ProjectService.createProject(project)
                 .then(() => {
                     this.props.history.push('/projects');
