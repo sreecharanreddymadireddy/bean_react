@@ -72,14 +72,12 @@ const EmployeeComponent = () => {
     </Link>
   );
 
-
-
   return (
     <div className="employee-container d-flex flex-column vh-100" style={{ marginTop: '20px' }}>
       <div>
         {addEmployeeButton}
       </div>
-      <div className="ag-theme-alpine my-grid-container flex-grow-1" style={{ overflowX: 'auto' }}>
+      <div className="ag-theme-alpine my-grid-container" style={{ height: 'calc(100% - 78px)', overflowX: 'auto' }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}
@@ -88,7 +86,8 @@ const EmployeeComponent = () => {
             resizable: true,
           }}
           pagination={true}
-          paginationPageSize={20}
+          paginationPageSize={5}
+          //domLayout='autoHeight' // Set the domLayout to autoHeight
           onGridReady={(params) => {
             params.api.sizeColumnsToFit();
             params.columnApi.getAllColumns().forEach((column) => {
@@ -99,9 +98,6 @@ const EmployeeComponent = () => {
       </div>
     </div>
   );
-
-
-
 };
 
 export default EmployeeComponent;
