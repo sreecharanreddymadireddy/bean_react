@@ -40,41 +40,46 @@
   }
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width:100%;
-  height: 50px;
-  background-color: black;
-  text-align: center;
-  color: white;
-  
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Create a full-screen container */
+.app-container {
+    min-height: 100vh; /* Set the minimum height to 100% of the viewport height */
+    padding: 18px; /* Add some padding if needed */
+    background-color: #b3cfda; /* Set a background color for the app */
 }
 
 
 /* MyGrid.css */
 .my-grid-container {
-  width: 100%;
-  height: 400px; 
+  width: 10%;
+  height: 100px; 
   align-content: center;
 }
 
-/* Customize header row style */
-.ag-header {
-  background-color: #eda494;
+/* Add this to your CSS file */
+.employee-container {
+  width: 100%;
 }
 
-/* Customize header cell style */
-.ag-header-cell {
-  font-weight: bold;
+.my-grid-container {
+  width: 100%;
+  height: calc(100vh - 150px); /* Adjust the height as needed */
+}
+/* styles.css (or your CSS file) */
+.no-scroll {
+  overflow: hidden;
+}
+/* Assuming you have your existing CSS styles */
+
+/* Adjust the main content area */
+.employee-content {
+  height: calc(100vh - 56px); /* Subtracting the header height */
+  /* overflow: auto; Add scrollbar if content overflows */
 }
 
-/* Customize odd rows style */
-.ag-row-odd {
-  background-color: rgb(124, 147, 183);
-}
-
-/* Customize even rows style */
-.ag-row-even {
-  background-color: #a1d6bb;
-}

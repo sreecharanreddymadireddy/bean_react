@@ -59,7 +59,21 @@ class CreateEmployeeComponent extends Component {
     }
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        let employee = { firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId };
+        let employee = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            emailId: this.state.emailId,
+            employeeType: this.state.employeeType,
+            employmentStatus: this.state.employmentStatus,
+            visa: this.state.visa,
+            dob: this.state.dob,
+            vendor: this.state.vendor,
+            phone: this.state.phone,
+            address: this.state.address,
+            city: this.state.city,
+            state: this.state.state,
+            referredBy: this.state.referredBy,
+        };
         console.log('employee => ' + JSON.stringify(employee));
 
         // step 5

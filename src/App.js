@@ -5,21 +5,20 @@ import EmployeeComponent from './components/EmployeeComponent';
 import AssignmentComponent from './components/AssignmentComponent';
 import CreateAssignmentComponent from './components/CreateAssignmentComponent';
 import HeaderComponent from './components/HeaderComponent';
-import FooterComponent from './components/FooterComponent';
 import CreateEmployeeComponent from './components/CreateEmployeeComponent';
 import ViewEmployeeComponent from './components/ViewEmployeeComponent';
 import ProjectComponent from './components/ProjectComponent';
 import CreateProjectComponent from './components/CreateProjectComponent'
+import InvoiceComponent from './components/InvoiceComponent'
+import SidebarComponent from './components/SidebarComponent'
 
 function App() {
-
   return (
-
-    <div>
-
+    <div className="app-container">
       <Router>
+        <SidebarComponent />
         <HeaderComponent />
-        <div className="container">
+        <main role="main" style={{ marginLeft: '3rem', marginRight: 0, flexGrow: 1 }}>
           <Switch>
             <Route path="/" exact component={EmployeeComponent}></Route>
             <Route path="/employees" component={EmployeeComponent}></Route>
@@ -29,12 +28,12 @@ function App() {
             <Route path="/add-assignment/:id" component={CreateAssignmentComponent}></Route>
             <Route path="/projects" component={ProjectComponent}></Route>
             <Route path="/add-project/:id" component={CreateProjectComponent}></Route>
+            <Route path="/invoices" component={InvoiceComponent}></Route>
           </Switch>
-        </div>
-        <FooterComponent />
+        </main>
+
       </Router>
     </div>
-
   );
 }
 

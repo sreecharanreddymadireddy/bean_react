@@ -4,26 +4,12 @@ import { FaUserTie } from 'react-icons/fa';
 
 function HeaderComponent() {
     return (
-        <header>
-            <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                <div className="container">
-                    <Link to="/" className="navbar-brand">
-                        <FaUserTie className="mr-2" />
-                        Employee Management App
-                    </Link>
-
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <Link to="/employees" className="nav-link">Employee</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/projects" className="nav-link">Project</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/assignments" className="nav-link">Assignment</Link>
-                        </li>
-                    </ul>
-                </div>
+        <header style={{ backgroundColor: 'grey', position: 'fixed', top: '0', left: '0', width: '100%', zIndex: '1000' }}>
+            <nav style={{ maxWidth: '1200px', margin: '0 auto', padding: '8px 20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Link to="/" style={{ display: 'flex', alignItems: 'center', color: 'white', textDecoration: 'none' }}>
+                    <FaUserTie className="mr-2" />
+                    Employee Management App
+                </Link>
             </nav>
         </header>
     );
